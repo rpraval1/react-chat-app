@@ -7,8 +7,9 @@ class ChatInput extends Component{
     deleteMessage(e){
         const{users, mainUser} = this.props
         
-        if(e.keyCode === 8 && e.target.value === ''){
-            this.props.endTypingState(mainUser)        
+        if(e.keyCode === 8){
+            if(e.target.value.length < 2)
+                this.props.endTypingState(mainUser)        
         }
     }
 
