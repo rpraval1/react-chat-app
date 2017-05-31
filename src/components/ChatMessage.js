@@ -9,10 +9,12 @@ class ChatMessage extends Component{
         const {date, mainUser, text} = this.props
         var textAlign = "left"
         var textColor = "teal"
+        var messageState = "Received"
 
         if(mainUser){
             textAlign = "right"
             textColor = "blue"
+            messageState = "Sent"
         }
 
         return(
@@ -21,6 +23,9 @@ class ChatMessage extends Component{
                     {text}
                     <span className="messageDate">
                         <Moment fromNow>{date}</Moment>
+                    </span>
+                    <span className="messageDate">
+                        {messageState}
                     </span>
                 </Message>
             </Container>
