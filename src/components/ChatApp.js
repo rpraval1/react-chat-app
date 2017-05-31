@@ -8,6 +8,8 @@ class ChatApp extends Component {
         super(props);
 
         this.state = {
+            user1typing: false,
+            user2typing: false,
             users:{
                 user1:{
                     id: 1,
@@ -45,18 +47,63 @@ class ChatApp extends Component {
         }
     }
 
+    updateMessages(newMessage){
+        var messages = this.state.messages
+        messages.push(newMessage)
+        this.setState({
+            messages
+        })
+    }
+
+    typingState(userID){
+        console.log(userID)
+        if(userID == 1){
+            this.setState({
+                user1typing: true
+            })
+        } else {
+            this.setState({
+                user2typing: true
+            })
+        }
+    }
+
+    endTypingState(userID){
+        if(userID == 1){
+            this.setState({
+                user1typing: false
+            })
+        } else {
+            this.setState({
+                user2typing: false
+            })
+        }
+    }
+
     render() {
-        let {users, user2, messages} = this.state
+        let {users, user2, messages, user1typing, user2typing} = this.state
 
         return (
             <Container >
                 <Grid columns={2} divided>
                     <Grid.Row>
                         <Grid.Column>
-                            <ChatScreen mainUser={1} users={users} messages={messages} />                
+                            <ChatScreen mainUser={1} users={users} messages={messages} 
+                            updateMessages={this.updateMessages.bind(this)} 
+                            typingState={this.typingState.bind(this)} 
+                            endTypingState={this.endTypingState.bind(this)} 
+                            status={user2typing}
+                            user2name="Rob"
+                            />                
                         </Grid.Column>
                         <Grid.Column>
-                            <ChatScreen mainUser={1} users={users} messages={messages} />                                            
+                            <ChatScreen mainUser={2} users={users} messages={messages} 
+                            updateMessages={this.updateMessages.bind(this)} 
+                            typingState={this.typingState.bind(this)} 
+                            endTypingState={this.endTypingState.bind(this)} 
+                            status={user1typing}  
+                            user2name="Laura"                     
+                            />                                            
                         </Grid.Column>
                     </Grid.Row>
                 </Grid>

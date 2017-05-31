@@ -6,11 +6,11 @@ class ChatMessage extends Component{
 
     render(){
         const {date, mainUser, text} = this.props
-        var textAlign = "right"
+        var textAlign = "left"
         var textColor = "teal"
 
         if(mainUser){
-            textAlign = "left"
+            textAlign = "right"
             textColor = "blue"
         }
 
