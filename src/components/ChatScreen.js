@@ -7,9 +7,11 @@ import ChatInput from './ChatInput'
 class ChatScreen extends Component{
 
     render(){
+        const{mainUser, users, sent, received, messages} = this.props
+
         return(
             <Container>
-                <ChatThread />
+                <ChatThread mainUser={mainUser} users={users} messages={messages} />
                 <ChatInput />
             </Container>
         )
