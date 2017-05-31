@@ -4,15 +4,15 @@ import './App.css';
 
 import { Container } from 'semantic-ui-react'
 import ChatApp from './components/ChatApp'
+import NavBar from './components/NavBar'
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <Container>
+        <Container fluid>
+          <NavBar />
           <ChatApp />
         </Container>
-      </div>
     );
   }
 }
